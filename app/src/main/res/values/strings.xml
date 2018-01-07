@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Aspie</string>
+    <string name="app_name">ASPIE</string>
+    <string name="button_login">LOGIN</string>
+    <string name="button_game1">EMPA¿QUÉ?</string>
+    <string name="button_game2">ENTENDIMIENTOS</string>
+    <string name="button_game3">SINSENTIDOS</string>
+    <string name="radio_easy">Fácil</string>
+    <string name="radio_hard">Difícil</string>
+    <string name="text_level">Dificultad</string>
+    <string name="button_accept">ACEPTAR</string>
+    <string name="button_cancel">CANCELAR</string>
+    <string name="input_login">Introduce tu login.</string>
 </resources>
