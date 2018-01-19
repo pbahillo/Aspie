@@ -10,4 +10,7 @@
     <string name="button_accept">ACEPTAR</string>
     <string name="button_cancel">CANCELAR</string>
     <string name="input_login">Introduce tu login.</string>
+    <string name="text_welcome">"Bienvenido "</string>
+    <string name="connecting">Conectando…</string>
+    <string name="bad_login_text">Login no válido</string>
 </resources>

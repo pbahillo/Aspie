@@ -84,7 +84,7 @@ public class Game2 {
                 @Override
                 public void run() {
                     numclick=0;
-                    if (isPeer(peer)){
+                    if (isPeer()){
                         match++;
                         if (match==peers.size()){
                             //TODO the result part
@@ -96,9 +96,9 @@ public class Game2 {
     }
 
 
-    private boolean isPeer(Peer paramPeer){
+    public boolean isPeer(){
         for (Peer peer:peers) {
-            if (peer.equals(paramPeer))
+            if (peer.equals(this.peer))
                 return true;
         }
         return false;

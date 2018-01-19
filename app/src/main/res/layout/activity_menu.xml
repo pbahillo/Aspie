@@ -5,15 +5,24 @@
     android:layout_height="match_parent"
     tools:context="eus.ehu.tta.pbahillo002.aspie.MenuActivity"
     android:orientation="vertical">
+    <TextView
+        android:id="@+id/menu_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"/>
     <Button
+        android:id="@+id/button_game1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_game1"/>
     <Button
+        android:id="@+id/button_game2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_game2"/>
     <Button
+        android:id="@+id/button_game3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_game3"/>
