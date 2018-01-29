@@ -1,7 +1,9 @@
 package eus.ehu.tta.pbahillo002.aspie.model;
 
 
-public class Game1 {
+import java.io.Serializable;
+
+public class Game1 implements Serializable{
     private String textQuestion;
     private String textAnswer0;
     private String textAnswer1;

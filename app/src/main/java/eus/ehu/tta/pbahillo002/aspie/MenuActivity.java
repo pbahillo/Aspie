@@ -10,7 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import eus.ehu.tta.pbahillo002.aspie.model.Game1;
+import eus.ehu.tta.pbahillo002.aspie.model.Game2;
+import eus.ehu.tta.pbahillo002.aspie.model.Game3;
+import eus.ehu.tta.pbahillo002.aspie.model.RestLogic;
 import eus.ehu.tta.pbahillo002.aspie.presentation.Data;
+import eus.ehu.tta.pbahillo002.aspie.presentation.ProgressTask;
 
 public class MenuActivity extends AppCompatActivity {
     private Data data;
@@ -23,7 +28,6 @@ public class MenuActivity extends AppCompatActivity {
         String text=getResources().getString(R.string.text_welcome).concat(data.getLogin());
         TextView textView=(TextView)findViewById(R.id.menu_text);
         textView.setText(text);
-
         final Button buttonGame1 =(Button)findViewById(R.id.button_game1);
         buttonGame1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,9 +36,40 @@ public class MenuActivity extends AppCompatActivity {
                 popupMenu.getMenuInflater().inflate(R.menu.level_menu,popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
                     public boolean onMenuItemClick(MenuItem menuItem){
-                        Intent intent=new Intent(MenuActivity.this,Game1Activity.class);
-                        intent.putExtra(data.DATA,data);
-                        startActivity(intent);
+                        switch (menuItem.getItemId()){
+                            case R.id.radio_easy:
+                                new ProgressTask<Game1>(MenuActivity.this,getResources().getString(R.string.connecting)){
+                                    @Override
+                                    protected Game1 work() throws Exception {
+                                        RestLogic restLogic=new RestLogic();
+                                        data.setGame1(restLogic.getJuego1(data.getLogin(),0));
+                                        return data.getGame1();
+                                    }
+                                    @Override
+                                    protected void onFinish(Game1 result) {
+                                        Intent intent=new Intent(MenuActivity.this,Game1Activity.class);
+                                        intent.putExtra(data.DATA,data);
+                                        startActivity(intent);
+                                    }
+                                }.execute();
+                                break;
+                            case R.id.radio_hard:
+                                new ProgressTask<Game1>(MenuActivity.this,getResources().getString(R.string.connecting)){
+                                    @Override
+                                    protected Game1 work() throws Exception {
+                                        RestLogic restLogic=new RestLogic();
+                                        data.setGame1(restLogic.getJuego1(data.getLogin(),1));
+                                        return data.getGame1();
+                                    }
+                                    @Override
+                                    protected void onFinish(Game1 result) {
+                                        Intent intent=new Intent(MenuActivity.this,Game1Activity.class);
+                                        intent.putExtra(data.DATA,data);
+                                        startActivity(intent);
+                                    }
+                                }.execute();
+                                break;
+                        }
                         Toast.makeText(MenuActivity.this,menuItem.getTitle(),Toast.LENGTH_SHORT).show();
                         return true;
                     }
@@ -42,7 +77,6 @@ public class MenuActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
-
         final Button buttonGame2 =(Button)findViewById(R.id.button_game2);
         buttonGame2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +85,14 @@ public class MenuActivity extends AppCompatActivity {
                 popupMenu.getMenuInflater().inflate(R.menu.level_menu,popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
                     public boolean onMenuItemClick(MenuItem menuItem){
+                        switch (menuItem.getItemId()){
+                            case R.id.radio_easy:
+                                data.setGame2(new Game2(0,getApplicationContext()));
+                                break;
+                            case R.id.radio_hard:
+                                data.setGame2(new Game2(1,getApplicationContext()));
+                                break;
+                        }
                         Intent intent=new Intent(MenuActivity.this,Game2Activity.class);
                         intent.putExtra(data.DATA,data);
                         startActivity(intent);
@@ -61,7 +103,6 @@ public class MenuActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
-
         final Button buttonGame3 =(Button)findViewById(R.id.button_game3);
         buttonGame3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,9 +111,40 @@ public class MenuActivity extends AppCompatActivity {
                 popupMenu.getMenuInflater().inflate(R.menu.level_menu,popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
                     public boolean onMenuItemClick(MenuItem menuItem){
-                        Intent intent=new Intent(MenuActivity.this,Game3Activity.class);
-                        intent.putExtra(data.DATA,data);
-                        startActivity(intent);
+                        switch (menuItem.getItemId()){
+                            case R.id.radio_easy:
+                                new ProgressTask<Game3>(MenuActivity.this,getResources().getString(R.string.connecting)){
+                                    @Override
+                                    protected Game3 work() throws Exception {
+                                        RestLogic restLogic=new RestLogic();
+                                        data.setGame3(restLogic.getJuego3(data.getLogin(),0));
+                                        return data.getGame3();
+                                    }
+                                    @Override
+                                    protected void onFinish(Game3 result) {
+                                        Intent intent=new Intent(MenuActivity.this,Game3Activity.class);
+                                        intent.putExtra(data.DATA,data);
+                                        startActivity(intent);
+                                    }
+                                }.execute();
+                                break;
+                            case R.id.radio_hard:
+                                new ProgressTask<Game3>(MenuActivity.this,getResources().getString(R.string.connecting)){
+                                    @Override
+                                    protected Game3 work() throws Exception {
+                                        RestLogic restLogic=new RestLogic();
+                                        data.setGame3(restLogic.getJuego3(data.getLogin(),1));
+                                        return data.getGame3();
+                                    }
+                                    @Override
+                                    protected void onFinish(Game3 result) {
+                                        Intent intent=new Intent(MenuActivity.this,Game3Activity.class);
+                                        intent.putExtra(data.DATA,data);
+                                        startActivity(intent);
+                                    }
+                                }.execute();
+                                break;
+                        }
                         Toast.makeText(MenuActivity.this,menuItem.getTitle(),Toast.LENGTH_SHORT).show();
                         return true;
                     }

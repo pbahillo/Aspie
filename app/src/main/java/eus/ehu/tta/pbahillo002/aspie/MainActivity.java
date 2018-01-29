@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO: La parte de la foto...
     public void login(View view){
         data.setLogin(((EditText)findViewById(R.id.login)).getText().toString());
-        new ProgressTask<Boolean>(this){
+        new ProgressTask<Boolean>(this,getResources().getString(R.string.connecting)){
 
             @Override
             protected Boolean work() throws Exception {

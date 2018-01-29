@@ -1,7 +1,9 @@
 package eus.ehu.tta.pbahillo002.aspie.model;
 
 
-public class Game3 {
+import java.io.Serializable;
+
+public class Game3 implements Serializable{
     private String url;
     private String answer0;
     private String answer1;
