@@ -1,5 +1,6 @@
 package eus.ehu.tta.pbahillo002.aspie;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -8,15 +9,18 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.support.v7.widget.GridLayout;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import eus.ehu.tta.pbahillo002.aspie.model.Game2;
+import eus.ehu.tta.pbahillo002.aspie.model.RestLogic;
 import eus.ehu.tta.pbahillo002.aspie.model.Result;
 import eus.ehu.tta.pbahillo002.aspie.presentation.Data;
 import eus.ehu.tta.pbahillo002.aspie.presentation.ProgressTask;
@@ -56,26 +60,56 @@ public class Game2Activity extends AppCompatActivity {
                         peer.setCard2(data.getGame2().getCards().get(cardIndex));
                         numclick=2;
                         Picasso.with(Game2Activity.this).load(data.getGame2().getCards().get(cardIndex)).into((ImageButton)view);
-                        new ProgressTask<Boolean>(Game2Activity.this,null){
+                        new ProgressTask<Integer>(Game2Activity.this,null){
                             @Override
-                            protected Boolean work() throws Exception {
+                            protected Integer work() throws Exception {
                                 TimeUnit.MILLISECONDS.sleep(1000);
                                 numclick=0;
                                 if (isPeer(data.getGame2().getPeers(),peer)){
                                     match++;
                                     if (match==data.getGame2().getPeers().size()){
-                                        //TODO the result part
+                                        data.getResult().setPuntuacion(100);
+                                        data.getResult().setClave(Integer.parseInt(data.getLogin()));
+                                        data.getResult().setJuego(getResources().getString(R.string.game2));
+                                        data.getResult().setFecha(Calendar.getInstance().getTime().toString());
+                                        return 2;
                                     }
-                                    return Boolean.TRUE;
+                                    return 1;
                                 }else
-                                    return Boolean.FALSE;
+                                    return 0;
                             }
                             @Override
-                            protected void onFinish(Boolean result){
-                                if(!result){
-                                    Picasso.with(Game2Activity.this).load(R.drawable.img).into((ImageButton)findViewById(data.getGame2().getCards().indexOf(peer.getCard1())));
-                                    Picasso.with(Game2Activity.this).load(R.drawable.img).into((ImageButton)findViewById(data.getGame2().getCards().indexOf(peer.getCard2())));
+                            protected void onFinish(Integer result){
+                                switch (result){
+                                    case 0:
+                                        Picasso.with(Game2Activity.this).load(R.drawable.img).into((ImageButton)findViewById(data.getGame2().getCards().indexOf(peer.getCard1())));
+                                        Picasso.with(Game2Activity.this).load(R.drawable.img).into((ImageButton)findViewById(data.getGame2().getCards().indexOf(peer.getCard2())));
+                                        break;
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        new ProgressTask<Boolean>(Game2Activity.this,getResources().getString(R.string.connecting)){
+
+                                            @Override
+                                            protected Boolean work() throws Exception {
+                                                RestLogic restLogic=new RestLogic();
+                                                return restLogic.addResult(data.getResult());
+                                            }
+
+                                            @Override
+                                            protected void onFinish(Boolean result) {
+                                                if(result)
+                                                    Toast.makeText(getApplicationContext(),"OK",Toast.LENGTH_SHORT).show();
+                                                else
+                                                    Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
+                                                Intent intent=new Intent(Game2Activity.this,ResultActivity.class);
+                                                intent.putExtra(data.DATA,data);
+                                                startActivity(intent);
+                                            }
+                                        }.execute();
+                                        break;
                                 }
+
                             }
                         }.execute();
 

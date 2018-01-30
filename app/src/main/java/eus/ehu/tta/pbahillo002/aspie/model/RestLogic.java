@@ -89,7 +89,6 @@ public class RestLogic implements RestServer {
 
     @Override
     public Boolean addResult(Result result) {
-        //clave fecha juego puntuacion
         JSONObject jsonObject=new JSONObject();
         try {
             jsonObject.put("clave",result.getClave());

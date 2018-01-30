@@ -49,6 +49,7 @@ public class Game1Activity extends AppCompatActivity {
         controller.setAnchorView(videoView);
         videoView.setMediaController(controller);
         fillView();
+        videoView.start();
     }
 
     public void check(View view){
@@ -89,7 +90,6 @@ public class Game1Activity extends AppCompatActivity {
                         @Override
                         protected Boolean work() throws Exception {
                             RestLogic restLogic=new RestLogic();
-
                             return restLogic.addResult(data.getResult());
                         }
 
