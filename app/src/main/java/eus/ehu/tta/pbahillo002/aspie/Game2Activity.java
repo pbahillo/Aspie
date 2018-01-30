@@ -104,6 +104,7 @@ public class Game2Activity extends AppCompatActivity {
                                                     Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
                                                 Intent intent=new Intent(Game2Activity.this,ResultActivity.class);
                                                 intent.putExtra(data.DATA,data);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                 startActivity(intent);
                                                 finish();
                                             }

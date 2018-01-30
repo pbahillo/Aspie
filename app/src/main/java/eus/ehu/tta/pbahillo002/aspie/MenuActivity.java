@@ -53,6 +53,7 @@ public class MenuActivity extends AppCompatActivity {
                                     protected void onFinish(Game1 result) {
                                         Intent intent=new Intent(MenuActivity.this,Game1Activity.class);
                                         intent.putExtra(data.DATA,data);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                         startActivity(intent);
                                     }
                                 }.execute();
@@ -70,6 +71,7 @@ public class MenuActivity extends AppCompatActivity {
                                     protected void onFinish(Game1 result) {
                                         Intent intent=new Intent(MenuActivity.this,Game1Activity.class);
                                         intent.putExtra(data.DATA,data);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                         startActivity(intent);
                                     }
                                 }.execute();
@@ -102,6 +104,7 @@ public class MenuActivity extends AppCompatActivity {
                         }
                         Intent intent=new Intent(MenuActivity.this,Game2Activity.class);
                         intent.putExtra(data.DATA,data);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                         Toast.makeText(MenuActivity.this,menuItem.getTitle(),Toast.LENGTH_SHORT).show();
                         return true;
@@ -132,6 +135,7 @@ public class MenuActivity extends AppCompatActivity {
                                     protected void onFinish(Game3 result) {
                                         Intent intent=new Intent(MenuActivity.this,Game3Activity.class);
                                         intent.putExtra(data.DATA,data);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                         startActivity(intent);
                                     }
                                 }.execute();
@@ -149,6 +153,7 @@ public class MenuActivity extends AppCompatActivity {
                                     protected void onFinish(Game3 result) {
                                         Intent intent=new Intent(MenuActivity.this,Game3Activity.class);
                                         intent.putExtra(data.DATA,data);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                         startActivity(intent);
                                     }
                                 }.execute();
@@ -162,7 +167,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
-
+    /*
     @Override
     public void onBackPressed() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -189,6 +194,6 @@ public class MenuActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-
+    */
 
 }

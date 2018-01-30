@@ -77,6 +77,7 @@ public class Game3Activity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"ERROR", Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(Game3Activity.this,ResultActivity.class);
                             intent.putExtra(data.DATA,data);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                             startActivity(intent);
                             finish();
                         }

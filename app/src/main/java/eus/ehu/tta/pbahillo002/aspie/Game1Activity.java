@@ -101,6 +101,7 @@ public class Game1Activity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(Game1Activity.this,ResultActivity.class);
                             intent.putExtra(data.DATA,data);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                             startActivity(intent);
                             finish();
                         }
@@ -119,8 +120,8 @@ public class Game1Activity extends AppCompatActivity {
         findViewById(R.id.game1_answer0_button).setBackgroundColor(Color.GRAY);
         ((Button)findViewById(R.id.game1_answer1_button)).setText(data.getGame1().getTests().get(current).getTextAnswer1());
         findViewById(R.id.game1_answer1_button).setBackgroundColor(Color.GRAY);
-        Picasso.with(this).load(data.getGame1().getTests().get(current).getUrlAnswer0()).resize(R.dimen.game_2_width_easy,R.dimen.game_2_heigh_easy).into((ImageView)findViewById(R.id.game1_answer0_image));
-        Picasso.with(this).load(data.getGame1().getTests().get(current).getUrlAnswer1()).resize(R.dimen.game_2_width_easy,R.dimen.game_2_heigh_easy).into((ImageView)findViewById(R.id.game1_answer1_image));
+        Picasso.with(this).load(Uri.parse(data.getGame1().getTests().get(current).getUrlAnswer0())).resize(R.dimen.game_2_width_easy,R.dimen.game_2_heigh_easy).into((ImageView)findViewById(R.id.game1_answer0_image));
+        Picasso.with(this).load(data.getGame1().getTests().get(current).getUrlAnswer1()).into((ImageView)findViewById(R.id.game1_answer1_image));
         current++;
     }
 }

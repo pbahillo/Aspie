@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent=new Intent(this.context,MenuActivity.class);
                     intent.putExtra(data.DATA,data);
                     this.context.startActivity(intent);
+                    finish();
                 }else{
                     Toast.makeText(this.context,R.string.bad_login_text,Toast.LENGTH_SHORT).show();
                 }

@@ -19,15 +19,8 @@ public class ResultActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.text_result)).setText("Resultado: "+data.getResult().getPuntuacion());
     }
     public void back(View view){
-        Intent intent=new Intent(ResultActivity.this,MenuActivity.class);
-        intent.putExtra(data.DATA,data);
-        startActivity(intent);
-        finish();
+        onBackPressed();
     }
 
-    @Override
-    public void onBackPressed() {
-
-    }
 }
 

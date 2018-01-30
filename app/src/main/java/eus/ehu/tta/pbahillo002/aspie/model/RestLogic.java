@@ -16,7 +16,7 @@ public class RestLogic implements RestServer {
 
     private RestClient client;
     private final static String restUrl="http://u017633.ehu.eus:28080/Aspie/rest/Aspie";
-    private final static String contentUrl="http://github.com/pbahillo/AspieContent/raw/master/";
+    private final static String contentUrl="http://raw.githubusercontent.com/pbahillo/AspieContent/master/";
 
 
     public RestLogic(){
@@ -27,7 +27,15 @@ public class RestLogic implements RestServer {
 
     @Override
     public Boolean loginUser(String login) {
-        return true;
+        try {
+            String response=client.getString("loginUser/".concat(login));
+            if(response.equals("OK"))
+                return Boolean.TRUE;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Boolean.FALSE;
+        }
+        return Boolean.FALSE;
     }
 
     @Override
