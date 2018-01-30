@@ -90,7 +90,7 @@ public class Game3Activity extends AppCompatActivity {
     }
 
     public void fillView() {
-        Picasso.with(Game3Activity.this).load(data.getGame3().getTests().get(current).getUrl()).into((ImageView) findViewById(R.id.game3_image));
+        Picasso.with(Game3Activity.this).load(data.getGame3().getTests().get(current).getUrl()).resize(1000,750).into((ImageView) findViewById(R.id.game3_image));
         findViewById(R.id.game3_radio_button_0).setBackgroundColor(Color.TRANSPARENT);
         findViewById(R.id.game3_radio_button_1).setBackgroundColor(Color.TRANSPARENT);
         findViewById(R.id.game3_radio_button_2).setBackgroundColor(Color.TRANSPARENT);

@@ -16,7 +16,7 @@ public class RestLogic implements RestServer {
 
     private RestClient client;
     private final static String restUrl="http://u017633.ehu.eus:28080/Aspie/rest/Aspie";
-    private final static String contentUrl="http://raw.githubusercontent.com/pbahillo/AspieContent/master/";
+    private final static String contentUrl="https://raw.githubusercontent.com/pbahillo/AspieContent/master/";
 
 
     public RestLogic(){
