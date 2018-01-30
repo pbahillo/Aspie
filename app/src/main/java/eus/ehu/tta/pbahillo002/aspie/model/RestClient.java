@@ -60,12 +60,9 @@ public class RestClient {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type","application/json; charset=UTF-8");
             PrintWriter printWriter=new PrintWriter(connection.getOutputStream());
-            try {
-                printWriter.print(jsonObject.toString());
-                return connection.getResponseCode();
-            }finally {
-                printWriter.close();
-            }
+            printWriter.print(jsonObject.toString());
+            printWriter.close();
+            return connection.getResponseCode();
         }finally {
             if(connection!=null)
                 connection.disconnect();
