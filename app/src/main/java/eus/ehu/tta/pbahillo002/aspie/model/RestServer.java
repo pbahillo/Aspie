@@ -7,5 +7,5 @@ interface RestServer {
     Boolean loginUser(String login);
     Game1 getJuego1(String login,int level);
     Game3 getJuego3(String login,int level);
-    void addResult(Result result);
+    Boolean addResult(Result result);
 }

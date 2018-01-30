@@ -6,22 +6,36 @@
     tools:context="eus.ehu.tta.pbahillo002.aspie.Game1Activity"
     android:orientation="vertical">
     <TextView
+        android:id="@+id/game1_question_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <VideoView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:id="@+id/game1_question_video"
+        android:layout_width="wrap_content"
+        android:layout_height="240dp"/>
     <GridLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numColumns="2">
+        android:layout_gravity="center_horizontal"
+        android:columnCount="2">
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:id="@+id/game1_answer0_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="check" />
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:id="@+id/game1_answer1_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="check"/>
+        <ImageView
+            android:id="@+id/game1_answer0_image"
+            android:layout_gravity="left"/>
+        <ImageView
+            android:id="@+id/game1_answer1_image"
+            android:layout_gravity="right"/>
     </GridLayout>
 
 

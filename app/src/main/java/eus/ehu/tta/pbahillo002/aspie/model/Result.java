@@ -4,10 +4,10 @@ package eus.ehu.tta.pbahillo002.aspie.model;
 import java.io.Serializable;
 
 public class Result implements Serializable{
-    private int clave;
-    private String fecha;
-    private String juego;
-    private int puntuacion;
+    private int clave=0;
+    private String fecha=null;
+    private String juego=null;
+    private int puntuacion=0;
 
     public int getClave() {
         return clave;

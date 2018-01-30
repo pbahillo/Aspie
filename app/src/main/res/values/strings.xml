@@ -13,4 +13,9 @@
     <string name="text_welcome">"Bienvenido "</string>
     <string name="connecting">Conectando…</string>
     <string name="bad_login_text">Login no válido</string>
+    <string name="game10">Juego 1 (Fácil)</string>
+    <string name="game11">Juego 1 (Difícil)</string>
+    <string name="game30">Juego 3 (Fácil)</string>
+    <string name="game31">Juego 3 (Difícil)</string>
+    <string name="game1">Juego 1</string>
 </resources>

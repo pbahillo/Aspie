@@ -16,6 +16,7 @@ public class RestLogic implements RestServer {
 
     private RestClient client;
     private final static String restUrl="http://u017633.ehu.eus:28080/Aspie/rest/Aspie";
+    private final static String contentUrl="http://github.com/pbahillo/AspieContent/raw/master/";
 
 
     public RestLogic(){
@@ -41,12 +42,12 @@ public class RestLogic implements RestServer {
                 Game1.Test test =new Game1.Test();
                 test.setCorrect(item.getInt("correcta"));
                 test.setLevel(item.getInt("nivel"));
-                test.setUrlQuestion(item.getString("url").split("|")[0]);
-                test.setTextQuestion(item.getString("url").split("|")[1]);
-                test.setUrlAnswer0(item.getString("respuesta1").split("|")[0]);
-                test.setTextAnswer0(item.getString("respuesta1").split("|")[1]);
-                test.setUrlAnswer1(item.getString("respuesta2").split("|")[0]);
-                test.setTextAnswer1(item.getString("respuesta2").split("|")[1]);
+                test.setUrlQuestion(contentUrl.concat((item.getString("url").split("\\|"))[0]));
+                test.setTextQuestion((item.getString("url").split("\\|"))[1]);
+                test.setUrlAnswer0(contentUrl.concat((item.getString("respuesta1").split("\\|"))[0]));
+                test.setTextAnswer0((item.getString("respuesta1").split("\\|"))[1]);
+                test.setUrlAnswer1(contentUrl.concat((item.getString("respuesta2").split("\\|"))[0]));
+                test.setTextAnswer1((item.getString("respuesta2").split("\\|"))[1]);
                 tests.add(test);
             }
             game1.setTests(tests);
@@ -71,7 +72,7 @@ public class RestLogic implements RestServer {
                 Game3.Test test =new Game3.Test();
                 test.setCorrect(item.getInt("correcta"));
                 test.setLevel(item.getInt("nivel"));
-                test.setUrl(item.getString("url"));
+                test.setUrl(contentUrl.concat(item.getString("url")));
                 test.setAnswer0(item.getString("respuesta1"));
                 test.setAnswer1(item.getString("respuesta2"));
                 test.setAnswer2(item.getString("respuesta3"));
@@ -87,8 +88,25 @@ public class RestLogic implements RestServer {
         return null;    }
 
     @Override
-    public void addResult(Result result) {
-
+    public Boolean addResult(Result result) {
+        //clave fecha juego puntuacion
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("clave",result.getClave());
+            jsonObject.put("fecha",result.getFecha());
+            jsonObject.put("juego",result.getJuego());
+            jsonObject.put("puntuacion",result.getPuntuacion());
+            int code=client.postJson(jsonObject,"addResult");
+            if (code==HttpURLConnection.HTTP_OK||code==HttpURLConnection.HTTP_NO_CONTENT)
+                return Boolean.TRUE;
+            return Boolean.FALSE;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return Boolean.FALSE;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Boolean.FALSE;
+        }
     }
 }
 

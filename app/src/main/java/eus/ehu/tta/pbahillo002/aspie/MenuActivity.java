@@ -14,6 +14,7 @@ import eus.ehu.tta.pbahillo002.aspie.model.Game1;
 import eus.ehu.tta.pbahillo002.aspie.model.Game2;
 import eus.ehu.tta.pbahillo002.aspie.model.Game3;
 import eus.ehu.tta.pbahillo002.aspie.model.RestLogic;
+import eus.ehu.tta.pbahillo002.aspie.model.Result;
 import eus.ehu.tta.pbahillo002.aspie.presentation.Data;
 import eus.ehu.tta.pbahillo002.aspie.presentation.ProgressTask;
 
@@ -43,6 +44,7 @@ public class MenuActivity extends AppCompatActivity {
                                     protected Game1 work() throws Exception {
                                         RestLogic restLogic=new RestLogic();
                                         data.setGame1(restLogic.getJuego1(data.getLogin(),0));
+                                        data.setResult(new Result());
                                         return data.getGame1();
                                     }
                                     @Override
@@ -59,6 +61,7 @@ public class MenuActivity extends AppCompatActivity {
                                     protected Game1 work() throws Exception {
                                         RestLogic restLogic=new RestLogic();
                                         data.setGame1(restLogic.getJuego1(data.getLogin(),1));
+                                        data.setResult(new Result());
                                         return data.getGame1();
                                     }
                                     @Override
@@ -88,9 +91,11 @@ public class MenuActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()){
                             case R.id.radio_easy:
                                 data.setGame2(new Game2(0,getApplicationContext()));
+                                data.setResult(new Result());
                                 break;
                             case R.id.radio_hard:
                                 data.setGame2(new Game2(1,getApplicationContext()));
+                                data.setResult(new Result());
                                 break;
                         }
                         Intent intent=new Intent(MenuActivity.this,Game2Activity.class);
@@ -118,6 +123,7 @@ public class MenuActivity extends AppCompatActivity {
                                     protected Game3 work() throws Exception {
                                         RestLogic restLogic=new RestLogic();
                                         data.setGame3(restLogic.getJuego3(data.getLogin(),0));
+                                        data.setResult(new Result());
                                         return data.getGame3();
                                     }
                                     @Override
@@ -134,6 +140,7 @@ public class MenuActivity extends AppCompatActivity {
                                     protected Game3 work() throws Exception {
                                         RestLogic restLogic=new RestLogic();
                                         data.setGame3(restLogic.getJuego3(data.getLogin(),1));
+                                        data.setResult(new Result());
                                         return data.getGame3();
                                     }
                                     @Override
