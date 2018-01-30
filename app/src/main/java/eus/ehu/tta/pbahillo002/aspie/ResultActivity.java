@@ -22,6 +22,7 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent=new Intent(ResultActivity.this,MenuActivity.class);
         intent.putExtra(data.DATA,data);
         startActivity(intent);
+        finish();
     }
 
     @Override

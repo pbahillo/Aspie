@@ -102,6 +102,7 @@ public class Game1Activity extends AppCompatActivity {
                             Intent intent=new Intent(Game1Activity.this,ResultActivity.class);
                             intent.putExtra(data.DATA,data);
                             startActivity(intent);
+                            finish();
                         }
                     }.execute();
                 }

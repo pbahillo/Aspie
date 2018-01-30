@@ -78,6 +78,7 @@ public class Game3Activity extends AppCompatActivity {
                             Intent intent=new Intent(Game3Activity.this,ResultActivity.class);
                             intent.putExtra(data.DATA,data);
                             startActivity(intent);
+                            finish();
                         }
                     }.execute();
                 }
